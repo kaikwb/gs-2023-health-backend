@@ -3,6 +3,7 @@ package br.com.fiap.gs2023healthbackend.models;
 import jakarta.persistence.*;
 
 @Entity
+@DiscriminatorColumn(name = "user_type", discriminatorType = DiscriminatorType.STRING)
 @Table(name = "roles",
     uniqueConstraints = {
         @UniqueConstraint(columnNames = "name", name = "uk_roles_name")
