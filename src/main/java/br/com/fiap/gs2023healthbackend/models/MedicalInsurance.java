@@ -11,15 +11,15 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @Table(
-    name = "ufs",
+    name = "medical_insurances",
     uniqueConstraints = {
-        @UniqueConstraint(columnNames = "name", name = "uk_ufs_name")
+        @UniqueConstraint(columnNames = "name", name = "uk_medical_insurances_name")
     }
 )
-public class Uf {
+public class MedicalInsurance {
     @Id
-    @SequenceGenerator(name = "sq_ufs", sequenceName = "sq_ufs", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_ufs")
+    @SequenceGenerator(name = "sq_medical_insurances", sequenceName = "sq_medical_insurances", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_medical_insurances")
     private Long id;
 
     @NotBlank

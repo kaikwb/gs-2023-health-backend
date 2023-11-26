@@ -1,6 +1,6 @@
 package br.com.fiap.gs2023healthbackend;
 
-import br.com.fiap.gs2023healthbackend.models.ERole;
+import br.com.fiap.gs2023healthbackend.enums.ERole;
 import br.com.fiap.gs2023healthbackend.models.Role;
 import br.com.fiap.gs2023healthbackend.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;

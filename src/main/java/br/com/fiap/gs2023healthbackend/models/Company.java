@@ -2,8 +2,15 @@ package br.com.fiap.gs2023healthbackend.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(
     name = "companies",
@@ -25,37 +32,10 @@ public class Company extends User {
     @Column(name = "cnes", nullable = false)
     private String cnes;
 
-    public Company() {
-    }
-
     public Company(String username, String email, String password, String cnpj, String name, String cnes) {
         super(username, email, password);
         this.cnpj = cnpj;
         this.name = name;
-        this.cnes = cnes;
-    }
-
-    public String getCnpj() {
-        return cnpj;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCnes() {
-        return cnes;
-    }
-
-    public void setCnes(String cnes) {
         this.cnes = cnes;
     }
 }

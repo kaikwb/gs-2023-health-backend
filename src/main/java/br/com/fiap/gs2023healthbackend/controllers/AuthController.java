@@ -1,6 +1,6 @@
 package br.com.fiap.gs2023healthbackend.controllers;
 
-import br.com.fiap.gs2023healthbackend.models.ERole;
+import br.com.fiap.gs2023healthbackend.enums.ERole;
 import br.com.fiap.gs2023healthbackend.models.Role;
 import br.com.fiap.gs2023healthbackend.models.User;
 import br.com.fiap.gs2023healthbackend.payload.request.LoginRequest;

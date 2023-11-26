@@ -2,8 +2,14 @@ package br.com.fiap.gs2023healthbackend.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import lombok.*;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(
     name = "medical_specialities",
     uniqueConstraints = {
@@ -19,28 +25,4 @@ public class MedialSpeciality {
     @NotBlank
     @Column(name = "name", nullable = false)
     private String name;
-
-    public MedialSpeciality() {
-    }
-
-    public MedialSpeciality(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

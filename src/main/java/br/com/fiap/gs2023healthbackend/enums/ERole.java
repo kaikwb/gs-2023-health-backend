@@ -1,4 +1,4 @@
-package br.com.fiap.gs2023healthbackend.models;
+package br.com.fiap.gs2023healthbackend.enums;
 
 public enum ERole {
     ROLE_ADMIN,
