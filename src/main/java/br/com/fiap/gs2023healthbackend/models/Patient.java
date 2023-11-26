@@ -16,11 +16,11 @@ import lombok.experimental.SuperBuilder;
 )
 public class Patient extends Person {
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "insurance_id", nullable = false)
+    @JoinColumn(name = "insurance_id")
     private MedicalInsurance insurance;
 
     @Pattern(regexp = "^[a-z][a-zA-Z0-9]*$")
-    @Column(name = "insurance_number", nullable = false)
+    @Column(name = "insurance_number")
     private String insuranceNumber;
 
     public Patient(String username, String email, String password, String name, String lastName, String cpf, String rg, MedicalInsurance insurance, String insuranceNumber) {
