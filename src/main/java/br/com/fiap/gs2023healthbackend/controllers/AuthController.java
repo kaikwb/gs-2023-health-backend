@@ -1,16 +1,18 @@
 package br.com.fiap.gs2023healthbackend.controllers;
 
 import br.com.fiap.gs2023healthbackend.enums.ERole;
-import br.com.fiap.gs2023healthbackend.models.Role;
-import br.com.fiap.gs2023healthbackend.models.User;
+import br.com.fiap.gs2023healthbackend.exceptions.InvalidSignupParameter;
+import br.com.fiap.gs2023healthbackend.models.*;
+import br.com.fiap.gs2023healthbackend.payload.request.signup.ClinicSignupRequest;
 import br.com.fiap.gs2023healthbackend.payload.request.LoginRequest;
-import br.com.fiap.gs2023healthbackend.payload.request.SignupRequest;
+import br.com.fiap.gs2023healthbackend.payload.request.signup.MedicSignupRequest;
+import br.com.fiap.gs2023healthbackend.payload.request.signup.PatientSignupRequest;
 import br.com.fiap.gs2023healthbackend.payload.response.MessageResponse;
 import br.com.fiap.gs2023healthbackend.payload.response.UserInfoResponse;
-import br.com.fiap.gs2023healthbackend.repository.RoleRepository;
-import br.com.fiap.gs2023healthbackend.repository.UserRepository;
+import br.com.fiap.gs2023healthbackend.repository.*;
 import br.com.fiap.gs2023healthbackend.security.jwt.JwtUtils;
 import br.com.fiap.gs2023healthbackend.security.services.UserDetailsImpl;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -23,9 +25,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 
@@ -33,11 +36,28 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
+    Logger logger = Logger.getLogger(AuthController.class.getName());
+
     @Autowired
     AuthenticationManager authenticationManager;
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    PatientRepository patientRepository;
+
+    @Autowired
+    MedicRepository medicRepository;
+
+    @Autowired
+    ClinicRepository clinicRepository;
+
+    @Autowired
+    LaboratoryRepository laboratoryRepository;
+
+    @Autowired
+    StateRepository stateRepository;
 
     @Autowired
     RoleRepository roleRepository;
@@ -47,6 +67,9 @@ public class AuthController {
 
     @Autowired
     JwtUtils jwtUtils;
+
+    @Autowired
+    ObjectMapper objectMapper;
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -70,74 +93,144 @@ public class AuthController {
                 roles));
     }
 
-    @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-            return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
-        }
-
-        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-            return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
-        }
-
-        User user = new User(signUpRequest.getUsername(),
-            signUpRequest.getEmail(),
-            encoder.encode(signUpRequest.getPassword()));
-
-        Set<String> strRoles = signUpRequest.getRole();
-        Set<Role> roles = new HashSet<>();
-
-        Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-            .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-        roles.add(userRole);
-
-        if (strRoles != null) {
-            strRoles.forEach(role -> {
-                switch (role) {
-                    case "patient":
-                        Role patientRole = roleRepository.findByName(ERole.ROLE_PATIENT)
-                            .orElseThrow(() -> new RuntimeException("Error: Role [ROLE_PATIENT] is not found."));
-                        roles.add(patientRole);
-
-                        break;
-
-                    case "medic":
-                        Role medicRole = roleRepository.findByName(ERole.ROLE_MEDIC)
-                            .orElseThrow(() -> new RuntimeException("Error: Role [ROLE_MEDIC] is not found."));
-                        roles.add(medicRole);
-
-                        break;
-
-                    case "clinic":
-                        Role clinicRole = roleRepository.findByName(ERole.ROLE_CLINIC)
-                            .orElseThrow(() -> new RuntimeException("Error: Role [ROLE_CLINIC] is not found."));
-                        roles.add(clinicRole);
-
-                        break;
-
-                    case "laboratory":
-                        Role laboratoryRole = roleRepository.findByName(ERole.ROLE_LABORATORY)
-                            .orElseThrow(() -> new RuntimeException("Error: Role [ROLE_LABORATORY] is not found."));
-                        roles.add(laboratoryRole);
-
-                        break;
-
-                    default:
-                        throw new RuntimeException("Error: Role [" + role + "] is not found.");
-                }
-            });
-        }
-
-        user.setRoles(roles);
-        userRepository.save(user);
-
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
-    }
-
     @PostMapping("/signout")
     public ResponseEntity<?> logoutUser() {
         ResponseCookie cookie = jwtUtils.getCleanJwtCookie();
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString())
             .body(new MessageResponse("You've been signed out!"));
+    }
+
+    @PostMapping("/signup/patient")
+    public ResponseEntity<?> registerPatient(@Valid @RequestBody PatientSignupRequest patientData) {
+        logger.info("Registering patient: " + patientData.getUsername());
+
+        Optional<Role> role = roleRepository.findByName(ERole.ROLE_MEDIC);
+
+        if (role.isEmpty()) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Role [%s] does not exist".formatted(ERole.ROLE_PATIENT)));
+        }
+
+        Patient patient = Patient.builder()
+            .username(patientData.getUsername())
+            .email(patientData.getEmail())
+            .password(encoder.encode(patientData.getPassword()))
+            .name(patientData.getName())
+            .lastName(patientData.getLastName())
+            .cpf(patientData.getCpf())
+            .rg(patientData.getRg())
+            .roles(Set.of(role.get()))
+            .build();
+
+        try {
+            patientRepository.checkIfIsValidToCreate(patient);
+        } catch (InvalidSignupParameter e) {
+            return ResponseEntity.badRequest().body(new MessageResponse(e.getErrorMessage()));
+        }
+
+        patientRepository.save(patient);
+
+        return ResponseEntity.ok(new MessageResponse("Patient registered successfully!"));
+    }
+
+    @PostMapping("/signup/medic")
+    public ResponseEntity<?> registerMedic(@Valid @RequestBody MedicSignupRequest medicData) {
+        logger.info("Registering medic: " + medicData.getUsername());
+
+        Optional<State> state = stateRepository.findByUf(medicData.getCrmUf().toUpperCase());
+
+        if (state.isEmpty()) {
+            return ResponseEntity.badRequest().body(new MessageResponse("CRM UF [%s] does not exist".formatted(medicData.getCrmUf().toUpperCase())));
+        }
+
+        Optional<Role> role = roleRepository.findByName(ERole.ROLE_MEDIC);
+
+        if (role.isEmpty()) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Role [%s] does not exist".formatted(ERole.ROLE_MEDIC)));
+        }
+
+        Medic medic = Medic.builder()
+            .username(medicData.getUsername())
+            .email(medicData.getEmail())
+            .password(encoder.encode(medicData.getPassword()))
+            .name(medicData.getName())
+            .lastName(medicData.getLastName())
+            .cpf(medicData.getCpf())
+            .rg(medicData.getRg())
+            .crm(medicData.getCrm())
+            .crmState(state.get())
+            .roles(Set.of(role.get()))
+            .build();
+
+        try {
+            medicRepository.checkIfIsValidToCreate(medic);
+        } catch (InvalidSignupParameter e) {
+            return ResponseEntity.badRequest().body(new MessageResponse(e.getErrorMessage()));
+        }
+
+        medicRepository.save(medic);
+
+        return ResponseEntity.ok(new MessageResponse("Medic registered successfully!"));
+    }
+
+    @PostMapping("/signup/clinic")
+    public ResponseEntity<?> registerClinic(@Valid @RequestBody ClinicSignupRequest clinicData) {
+        logger.info("Registering clinic: " + clinicData.getUsername());
+
+        Optional<Role> role = roleRepository.findByName(ERole.ROLE_CLINIC);
+
+        if (role.isEmpty()) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Role [%s] does not exist".formatted(ERole.ROLE_CLINIC)));
+        }
+
+        Clinic clinic = Clinic.builder()
+            .username(clinicData.getUsername())
+            .email(clinicData.getEmail())
+            .password(encoder.encode(clinicData.getPassword()))
+            .name(clinicData.getName())
+            .cnpj(clinicData.getCnpj())
+            .cnes(clinicData.getCnes())
+            .roles(Set.of(role.get()))
+            .build();
+
+        try {
+            clinicRepository.checkIfIsValidToCreate(clinic);
+        } catch (InvalidSignupParameter e) {
+            return ResponseEntity.badRequest().body(new MessageResponse(e.getErrorMessage()));
+        }
+
+        clinicRepository.save(clinic);
+
+        return ResponseEntity.ok(new MessageResponse("Clinic registered successfully!"));
+    }
+
+    @PostMapping("/signup/laboratory")
+    public ResponseEntity<?> registerLaboratory(@Valid @RequestBody ClinicSignupRequest laboratoryData) {
+        logger.info("Registering laboratory: " + laboratoryData.getUsername());
+
+        Optional<Role> role = roleRepository.findByName(ERole.ROLE_LABORATORY);
+
+        if (role.isEmpty()) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Role [%s] does not exist".formatted(ERole.ROLE_LABORATORY)));
+        }
+
+        Laboratory laboratory = Laboratory.builder()
+            .username(laboratoryData.getUsername())
+            .email(laboratoryData.getEmail())
+            .password(encoder.encode(laboratoryData.getPassword()))
+            .name(laboratoryData.getName())
+            .cnpj(laboratoryData.getCnpj())
+            .cnes(laboratoryData.getCnes())
+            .roles(Set.of(role.get()))
+            .build();
+
+        try {
+            laboratoryRepository.checkIfIsValidToCreate(laboratory);
+        } catch (InvalidSignupParameter e) {
+            return ResponseEntity.badRequest().body(new MessageResponse(e.getErrorMessage()));
+        }
+
+        laboratoryRepository.save(laboratory);
+
+        return ResponseEntity.ok(new MessageResponse("Laboratory registered successfully!"));
     }
 }

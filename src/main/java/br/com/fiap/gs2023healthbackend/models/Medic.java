@@ -26,8 +26,8 @@ public class Medic extends Person {
     private String crm;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "crm_uf_id", nullable = false)
-    private Uf crmUF;
+    @JoinColumn(name = "crm_state_id", nullable = false)
+    private State crmState;
 
     @Builder.Default
     @ManyToMany(fetch = FetchType.LAZY)
@@ -53,10 +53,10 @@ public class Medic extends Person {
     )
     private Set<Patient> patients = new HashSet<>();
 
-    public Medic(String username, String email, String password, String name, String lastName, String cpf, String rg, String crm, Uf crmUF, Set<MedialSpeciality> specialties, Set<Patient> patients) {
+    public Medic(String username, String email, String password, String name, String lastName, String cpf, String rg, String crm, State crmState, Set<MedialSpeciality> specialties, Set<Patient> patients) {
         super(username, email, password, name, lastName, cpf, rg);
         this.crm = crm;
-        this.crmUF = crmUF;
+        this.crmState = crmState;
         this.specialties = specialties;
         this.patients = patients;
     }

@@ -67,7 +67,7 @@ public class Gs2023HealthBackendApplication {
             patientRepository.checkIfIsValidToCreate(patient);
             patientRepository.save(patient);
         } catch (InvalidSignupParameter e) {
-            logger.error(e.getMessage());
+            logger.error(e.getErrorMessage());
         }
 
     }
