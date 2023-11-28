@@ -19,7 +19,7 @@ public class Patient extends Person {
     @JoinColumn(name = "insurance_id")
     private MedicalInsurance insurance;
 
-    @Pattern(regexp = "^[a-z][a-zA-Z0-9]*$")
+    @Pattern(regexp = "^[a-zA-Z0-9]*$")
     @Column(name = "insurance_number")
     private String insuranceNumber;
 
