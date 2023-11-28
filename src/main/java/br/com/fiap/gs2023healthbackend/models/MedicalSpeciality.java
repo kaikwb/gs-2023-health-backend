@@ -16,7 +16,7 @@ import lombok.*;
         @UniqueConstraint(columnNames = "name", name = "uk_medical_specialities_name")
     }
 )
-public class MedialSpeciality {
+public class MedicalSpeciality {
     @Id
     @SequenceGenerator(name = "sq_medical_specialities", sequenceName = "sq_medical_specialities", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_medical_specialities")

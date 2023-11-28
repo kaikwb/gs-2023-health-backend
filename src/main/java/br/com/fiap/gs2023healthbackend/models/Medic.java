@@ -39,7 +39,7 @@ public class Medic extends Person {
             @UniqueConstraint(columnNames = {"medic_id", "specialty_id"}, name = "uk_medic_specialties_medic_specialty")
         }
     )
-    private Set<MedialSpeciality> specialties = new HashSet<>();
+    private Set<MedicalSpeciality> specialties = new HashSet<>();
 
     @Builder.Default
     @ManyToMany(fetch = FetchType.LAZY)
@@ -53,7 +53,7 @@ public class Medic extends Person {
     )
     private Set<Patient> patients = new HashSet<>();
 
-    public Medic(String username, String email, String password, String name, String lastName, String cpf, String rg, String crm, State crmState, Set<MedialSpeciality> specialties, Set<Patient> patients) {
+    public Medic(String username, String email, String password, String name, String lastName, String cpf, String rg, String crm, State crmState, Set<MedicalSpeciality> specialties, Set<Patient> patients) {
         super(username, email, password, name, lastName, cpf, rg);
         this.crm = crm;
         this.crmState = crmState;
