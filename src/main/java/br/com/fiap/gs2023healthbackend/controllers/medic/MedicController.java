@@ -21,7 +21,7 @@ public class MedicController extends MedicBaseController {
     @GetMapping
     @PreAuthorize("hasRole('ROLE_MEDIC') or hasRole('ROLE_USER')")
     public ResponseEntity<?> getMedics(@PageableDefault(sort = {"name", "lastName"}, size = 10) Pageable pageable) {
-        if (isMedic()) {
+        if (Boolean.TRUE.equals(isMedic())) {
             return getMedicInfo();
         }
 

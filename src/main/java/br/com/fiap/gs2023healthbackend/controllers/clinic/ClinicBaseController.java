@@ -1,5 +1,6 @@
 package br.com.fiap.gs2023healthbackend.controllers.clinic;
 
+import br.com.fiap.gs2023healthbackend.enums.ERole;
 import br.com.fiap.gs2023healthbackend.models.Clinic;
 import br.com.fiap.gs2023healthbackend.models.Medic;
 import br.com.fiap.gs2023healthbackend.models.MedicalSpeciality;
@@ -24,6 +25,12 @@ public class ClinicBaseController {
 
     @Autowired
     MedicRepository medicRepository;
+
+    Boolean isClinic() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        return auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals(ERole.ROLE_CLINIC.name()));
+    }
 
     Clinic getClinic() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
