@@ -1,5 +1,6 @@
 package br.com.fiap.gs2023healthbackend.payload.response.clinic;
 
+import br.com.fiap.gs2023healthbackend.payload.response.medic.MedicSimpleResponse;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -34,5 +35,5 @@ public class ClinicResponse {
     @NotBlank
     private String cnes;
 
-    private Set<ClinicMedicResponse> medics;
+    private Set<MedicSimpleResponse> medics;
 }

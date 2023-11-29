@@ -3,8 +3,8 @@ package br.com.fiap.gs2023healthbackend.controllers;
 import br.com.fiap.gs2023healthbackend.enums.ERole;
 import br.com.fiap.gs2023healthbackend.exceptions.InvalidSignupParameter;
 import br.com.fiap.gs2023healthbackend.models.*;
-import br.com.fiap.gs2023healthbackend.payload.request.signup.ClinicSignupRequest;
 import br.com.fiap.gs2023healthbackend.payload.request.LoginRequest;
+import br.com.fiap.gs2023healthbackend.payload.request.signup.ClinicSignupRequest;
 import br.com.fiap.gs2023healthbackend.payload.request.signup.MedicSignupRequest;
 import br.com.fiap.gs2023healthbackend.payload.request.signup.PatientSignupRequest;
 import br.com.fiap.gs2023healthbackend.payload.response.MessageResponse;
@@ -104,10 +104,10 @@ public class AuthController {
     public ResponseEntity<?> registerPatient(@Valid @RequestBody PatientSignupRequest patientData) {
         logger.info("Registering patient: " + patientData.getUsername());
 
-        Optional<Role> role = roleRepository.findByName(ERole.ROLE_MEDIC);
+        Set<Role> roles = roleRepository.findAllByNameIn(Set.of(ERole.ROLE_PATIENT, ERole.ROLE_USER));
 
-        if (role.isEmpty()) {
-            return ResponseEntity.badRequest().body(new MessageResponse("Role [%s] does not exist".formatted(ERole.ROLE_PATIENT)));
+        if (roles.isEmpty()) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Cannot find roles [%s] or [%s]".formatted(ERole.ROLE_PATIENT, ERole.ROLE_USER)));
         }
 
         Patient patient = Patient.builder()
@@ -118,7 +118,7 @@ public class AuthController {
             .lastName(patientData.getLastName())
             .cpf(patientData.getCpf())
             .rg(patientData.getRg())
-            .roles(Set.of(role.get()))
+            .roles(roles)
             .build();
 
         try {
@@ -142,10 +142,10 @@ public class AuthController {
             return ResponseEntity.badRequest().body(new MessageResponse("CRM UF [%s] does not exist".formatted(medicData.getCrmUf().toUpperCase())));
         }
 
-        Optional<Role> role = roleRepository.findByName(ERole.ROLE_MEDIC);
+        Set<Role> roles = roleRepository.findAllByNameIn(Set.of(ERole.ROLE_MEDIC, ERole.ROLE_USER));
 
-        if (role.isEmpty()) {
-            return ResponseEntity.badRequest().body(new MessageResponse("Role [%s] does not exist".formatted(ERole.ROLE_MEDIC)));
+        if (roles.isEmpty()) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Cannot find roles [%s] or [%s]".formatted(ERole.ROLE_MEDIC, ERole.ROLE_USER)));
         }
 
         Medic medic = Medic.builder()
@@ -158,7 +158,7 @@ public class AuthController {
             .rg(medicData.getRg())
             .crm(medicData.getCrm())
             .crmState(state.get())
-            .roles(Set.of(role.get()))
+            .roles(roles)
             .build();
 
         try {
@@ -176,10 +176,10 @@ public class AuthController {
     public ResponseEntity<?> registerClinic(@Valid @RequestBody ClinicSignupRequest clinicData) {
         logger.info("Registering clinic: " + clinicData.getUsername());
 
-        Optional<Role> role = roleRepository.findByName(ERole.ROLE_CLINIC);
+        Set<Role> roles = roleRepository.findAllByNameIn(Set.of(ERole.ROLE_CLINIC, ERole.ROLE_USER));
 
-        if (role.isEmpty()) {
-            return ResponseEntity.badRequest().body(new MessageResponse("Role [%s] does not exist".formatted(ERole.ROLE_CLINIC)));
+        if (roles.isEmpty()) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Cannot find roles [%s] or [%s]".formatted(ERole.ROLE_CLINIC, ERole.ROLE_USER)));
         }
 
         Clinic clinic = Clinic.builder()
@@ -189,7 +189,7 @@ public class AuthController {
             .name(clinicData.getName())
             .cnpj(clinicData.getCnpj())
             .cnes(clinicData.getCnes())
-            .roles(Set.of(role.get()))
+            .roles(roles)
             .build();
 
         try {
@@ -207,10 +207,10 @@ public class AuthController {
     public ResponseEntity<?> registerLaboratory(@Valid @RequestBody ClinicSignupRequest laboratoryData) {
         logger.info("Registering laboratory: " + laboratoryData.getUsername());
 
-        Optional<Role> role = roleRepository.findByName(ERole.ROLE_LABORATORY);
+        Set<Role> roles = roleRepository.findAllByNameIn(Set.of(ERole.ROLE_LABORATORY, ERole.ROLE_USER));
 
-        if (role.isEmpty()) {
-            return ResponseEntity.badRequest().body(new MessageResponse("Role [%s] does not exist".formatted(ERole.ROLE_LABORATORY)));
+        if (roles.isEmpty()) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Cannot find roles [%s] or [%s]".formatted(ERole.ROLE_LABORATORY, ERole.ROLE_USER)));
         }
 
         Laboratory laboratory = Laboratory.builder()
@@ -220,7 +220,7 @@ public class AuthController {
             .name(laboratoryData.getName())
             .cnpj(laboratoryData.getCnpj())
             .cnes(laboratoryData.getCnes())
-            .roles(Set.of(role.get()))
+            .roles(roles)
             .build();
 
         try {

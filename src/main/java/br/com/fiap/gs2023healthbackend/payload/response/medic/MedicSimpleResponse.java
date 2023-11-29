@@ -1,4 +1,4 @@
-package br.com.fiap.gs2023healthbackend.payload.response.clinic;
+package br.com.fiap.gs2023healthbackend.payload.response.medic;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -13,7 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ClinicMedicResponse {
+public class MedicSimpleResponse {
     @NotNull
     private Long id;
 

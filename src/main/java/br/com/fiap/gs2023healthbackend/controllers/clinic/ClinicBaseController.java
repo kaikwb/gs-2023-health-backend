@@ -3,7 +3,7 @@ package br.com.fiap.gs2023healthbackend.controllers.clinic;
 import br.com.fiap.gs2023healthbackend.models.Clinic;
 import br.com.fiap.gs2023healthbackend.models.Medic;
 import br.com.fiap.gs2023healthbackend.models.MedicalSpeciality;
-import br.com.fiap.gs2023healthbackend.payload.response.clinic.ClinicMedicResponse;
+import br.com.fiap.gs2023healthbackend.payload.response.medic.MedicSimpleResponse;
 import br.com.fiap.gs2023healthbackend.payload.response.clinic.ClinicResponse;
 import br.com.fiap.gs2023healthbackend.repository.ClinicRepository;
 import br.com.fiap.gs2023healthbackend.repository.MedicRepository;
@@ -31,8 +31,8 @@ public class ClinicBaseController {
         return clinicRepository.findByUsername(auth.getName()).orElseThrow();
     }
 
-    ClinicMedicResponse getClinicMedicResponse(Medic medic) {
-        return ClinicMedicResponse.builder()
+    MedicSimpleResponse getClinicMedicResponse(Medic medic) {
+        return MedicSimpleResponse.builder()
             .id(medic.getId())
             .name(medic.getName())
             .lastName(medic.getLastName())
