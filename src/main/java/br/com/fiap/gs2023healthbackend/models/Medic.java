@@ -33,8 +33,14 @@ public class Medic extends Person {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "medic_specialties",
-        joinColumns = @JoinColumn(name = "medic_id"),
-        inverseJoinColumns = @JoinColumn(name = "specialty_id"),
+        joinColumns = @JoinColumn(
+            name = "medic_id",
+            foreignKey = @ForeignKey(name = "fk_medic_specialties_medic_id")
+        ),
+        inverseJoinColumns = @JoinColumn(
+            name = "specialty_id",
+            foreignKey = @ForeignKey(name = "fk_medic_specialties_specialty_id")
+        ),
         uniqueConstraints = {
             @UniqueConstraint(columnNames = {"medic_id", "specialty_id"}, name = "uk_medic_specialties_medic_specialty")
         }
@@ -45,8 +51,16 @@ public class Medic extends Person {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "medic_patients",
-        joinColumns = @JoinColumn(name = "medic_id"),
-        inverseJoinColumns = @JoinColumn(name = "patient_id"),
+        joinColumns = @JoinColumn(
+            name = "medic_id",
+            nullable = false,
+            foreignKey = @ForeignKey(name = "fk_medic_patients_medic_id")
+        ),
+        inverseJoinColumns = @JoinColumn(
+            name = "patient_id",
+            nullable = false,
+            foreignKey = @ForeignKey(name = "fk_medic_patients_patient_id")
+        ),
         uniqueConstraints = {
             @UniqueConstraint(columnNames = {"medic_id", "patient_id"}, name = "uk_medic_patients_medic_patient")
         }

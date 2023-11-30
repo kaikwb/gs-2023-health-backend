@@ -45,8 +45,16 @@ public class User {
     @Builder.Default
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
-        joinColumns = @JoinColumn(name = "user_id"),
-        inverseJoinColumns = @JoinColumn(name = "role_id"),
+        joinColumns = @JoinColumn(
+            name = "user_id",
+            nullable = false,
+            foreignKey = @ForeignKey(name = "fk_user_roles_user_id")
+        ),
+        inverseJoinColumns = @JoinColumn(
+            name = "role_id",
+            nullable = false,
+            foreignKey = @ForeignKey(name = "fk_user_roles_role_id")
+        ),
         uniqueConstraints = {
             @UniqueConstraint(columnNames = {"user_id", "role_id"}, name = "uk_user_roles_user_role")
         }

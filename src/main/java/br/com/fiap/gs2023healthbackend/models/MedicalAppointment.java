@@ -17,8 +17,8 @@ import java.time.ZonedDateTime;
 )
 public class MedicalAppointment {
     @Id
-    @SequenceGenerator(name = "medical_appointments_sequence", sequenceName = "medical_appointments_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "medical_appointments_sequence")
+    @SequenceGenerator(name = "sq_medical_appointments", sequenceName = "sq_medical_appointments", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_medical_appointments")
     private Long id;
 
     @ManyToOne

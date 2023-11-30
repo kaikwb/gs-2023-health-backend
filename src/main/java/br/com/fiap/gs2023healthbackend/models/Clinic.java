@@ -21,8 +21,16 @@ public class Clinic extends Company {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "clinic_medics",
-        joinColumns = @JoinColumn(name = "clinic_id"),
-        inverseJoinColumns = @JoinColumn(name = "medic_id"),
+        joinColumns = @JoinColumn(
+            name = "clinic_id",
+            nullable = false,
+            foreignKey = @ForeignKey(name = "fk_clinic_medics_clinic_id")
+        ),
+        inverseJoinColumns = @JoinColumn(
+            name = "medic_id",
+            nullable = false,
+            foreignKey = @ForeignKey(name = "fk_clinic_medics_medic_id")
+        ),
         uniqueConstraints = {
             @UniqueConstraint(columnNames = {"clinic_id", "medic_id"}, name = "uk_clinic_medics_clinic_medic")
         }
