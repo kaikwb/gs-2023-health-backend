@@ -1,0 +1,13 @@
+.idea/
+astah/
+diagrams/
+postman/
+target/
+
+.dockerignore
+.gitignore
+Dockerfile
+gs-2023-health-backend.iml
+HELP.md
+LICENSE
+README.md

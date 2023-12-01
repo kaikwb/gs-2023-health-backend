@@ -96,6 +96,35 @@ Por limitações de tempo, não foi possível implementar os seguintes requisito
 - [IntelliJ IDEA 2023.2.5](https://www.jetbrains.com/pt-br/idea/)
 - [Postman 10.20.7](https://www.postman.com/)
 
+## Como executar o projeto
+
+### Pré-requisitos
+
+- Docker
+
+### Executando o projeto
+
+1. Clone o repositório
+2. Execute o comando abaixo na raiz do projeto para compilar o projeto
+```shell
+docker build -t kaikwb/gs2023healthbackend .
+```
+3. Execute o comando abaixo na raiz do projeto para executar o projeto
+```shell
+docker run --rm -p 8080:8080 kaikwb/gs2023healthbackend
+```
+
+### Imagem pre-compilada
+
+A imagem pre-compilada do projeto está disponível no Docker Hub no link abaixo:
+
+[Docker Hub - gs2023healthbackend](https://hub.docker.com/r/kaikwb/gs2023healthbackend)
+
+Para executar a imagem pre-compilada, execute o comando abaixo:
+```shell
+docker run --rm -p 8080:8080 --name gs2023healthbackend kaikwb/gs2023healthbackend
+```
+
 ## Coleção do Postman
 
 A coleção do Postman com as requisições para testar o sistema está disponível na pasta [postman](/postman) do projeto.
