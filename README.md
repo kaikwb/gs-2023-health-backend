@@ -114,7 +114,7 @@ docker build -t kaikwb/gs2023healthbackend .
 ```
 3. Execute o comando abaixo na raiz do projeto para executar o projeto
 ```shell
-docker run --rm -p 8080:8080 kaikwb/gs2023healthbackend
+docker run --rm -p 8080:8080 --name gs2023healthbackend kaikwb/gs2023healthbackend
 ```
 
 ### Imagem pre-compilada
