@@ -124,7 +124,7 @@ Pacote Models: <br>
 ![Pacote Models](diagrams/br/com/fiap/gs2023healthbackend/models/Models_diagram.png)
 
 Pacote Payload: <br>
-![Pacote Payload](diagrams/br/com/fiap/gs2023healthbackend/payload/Payload_diagram.png)
+![Pacote Payload](diagrams/br/com/fiap/gs2023healthbackend/payload/Payload_Diagram.png)
 
 Pacote Repository: <br>
 ![Pacote Repository](diagrams/br/com/fiap/gs2023healthbackend/repository/Repository_diagram.png)
