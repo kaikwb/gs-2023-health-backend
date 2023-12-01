@@ -2,7 +2,7 @@
 
 ## Desafio
 
-### “Inovação e Tecnologia Moldando o Futuro da Saúde: Prevenção, Automação e Precisão"
+### "Inovação e Tecnologia Moldando o Futuro da Saúde: Prevenção, Automação e Precisão"
 
 ## Integrantes
 
@@ -15,12 +15,15 @@ Ficou responsável pelos entregáveis:
 - [Leonardo de Barros Silva](https://github.com/negreiroleo) RM: 97582 </br>
   Ficou responsável pelos entregáveis:
   - HYBRID MOBILE APP DEVELOPMENT
+
 - [Lucas Satoru Shiaku](https://github.com/LucasShiaku) RM: 97019 </br>
   Ficou responsável pelos entregáveis:
   - DISRUPTIVE ARCHITECTURES: IT, IOB & IA
+
 - [Pablo Lage Carral](https://github.com/Pablo-Lage-Carral) RM 97282 </br>
   Ficou responsável pelos entregáveis:
   - DEVOPS TOOLS & CLOUD COMPUTING
+
 - [Rafael Vieira Pinto](https://github.com/Rafa2318) RM: 97117 </br>
   Ficou responsável pelos entregáveis:
   - COMPLIANCE & QUALITY ASSURANCE
@@ -127,39 +130,39 @@ docker run --rm -p 8080:8080 --name gs2023healthbackend kaikwb/gs2023healthbacke
 
 ## Coleção do Postman
 
-A coleção do Postman com as requisições para testar o sistema está disponível na pasta [postman](/postman) do projeto.
+A coleção do Postman com as requisições para testar o sistema está disponível na pasta [documentacao/postman](/documentacao/postman) do projeto.
 
 ## Diagrama de Classes
 
-O projeto do Astah com o diagrama de classes está disponível na pasta [astah](/astah) do projeto.
+O projeto do Astah com o diagrama de classes está disponível na pasta [documentacao/astah](/documentacao/astah) do projeto.
 
-Os diagramas também estão disponíveis no formato PNG na pasta [diagrams](/diagrams) do projeto.
+Os diagramas também estão disponíveis no formato PNG na pasta [documentacao/diagrams](/documentacao/diagrams) do projeto.
 
 Abaixo segue uma imagem do diagrama de classes: <br>
 
 Pacote Cotrollers: <br>
-![Pacote Controllers](diagrams/br/com/fiap/gs2023healthbackend/controllers/Controllers_diagram.png)
+![Pacote Controllers](documentacao/diagrams/br/com/fiap/gs2023healthbackend/controllers/Controllers_diagram.png)
 
 Pacote Enums: <br>
-![Pacote Enums](diagrams/br/com/fiap/gs2023healthbackend/enums/Enums_diagram.png)
+![Pacote Enums](documentacao/diagrams/br/com/fiap/gs2023healthbackend/enums/Enums_diagram.png)
 
 Pacote Exceptions: <br>
-![Pacote Exceptions](diagrams/br/com/fiap/gs2023healthbackend/exceptions/Exceptions_diagram.png)
+![Pacote Exceptions](documentacao/diagrams/br/com/fiap/gs2023healthbackend/exceptions/Exceptions_diagram.png)
 
 Pacote Handlers: <br>
-![Pacote Handlers](diagrams/br/com/fiap/gs2023healthbackend/handlers/Handlers_diagram.png)
+![Pacote Handlers](documentacao/diagrams/br/com/fiap/gs2023healthbackend/handlers/Handlers_diagram.png)
 
 Pacote Models: <br>
-![Pacote Models](diagrams/br/com/fiap/gs2023healthbackend/models/Models_diagram.png)
+![Pacote Models](documentacao/diagrams/br/com/fiap/gs2023healthbackend/models/Models_diagram.png)
 
 Pacote Payload: <br>
-![Pacote Payload](diagrams/br/com/fiap/gs2023healthbackend/payload/Payload_Diagram.png)
+![Pacote Payload](documentacao/diagrams/br/com/fiap/gs2023healthbackend/payload/Payload_Diagram.png)
 
 Pacote Repository: <br>
-![Pacote Repository](diagrams/br/com/fiap/gs2023healthbackend/repository/Repository_diagram.png)
+![Pacote Repository](documentacao/diagrams/br/com/fiap/gs2023healthbackend/repository/Repository_diagram.png)
 
 Pacote Security: <br>
-![Pacote Security](diagrams/br/com/fiap/gs2023healthbackend/security/Security_diagram.png)
+![Pacote Security](documentacao/diagrams/br/com/fiap/gs2023healthbackend/security/Security_diagram.png)
 
 Pacote Services: <br>
-![Pacote Main](diagrams/br/com/fiap/gs2023healthbackend/Main_diagram.png)
+![Pacote Main](documentacao/diagrams/br/com/fiap/gs2023healthbackend/Main_diagram.png)

@@ -1,7 +1,7 @@
 .idea/
-astah/
-diagrams/
-postman/
+documentacao/astah/
+documentacao/diagrams/
+documentacao/postman/
 target/
 
 .dockerignore
