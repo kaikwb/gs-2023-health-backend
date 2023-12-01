@@ -85,6 +85,13 @@ Por limitações de tempo, não foi possível implementar os seguintes requisito
 - O sistema não tem a funcionalidade de agenda de consultas e nem o calendário de consultas.
 - O sistema não tem as funcionalidades de exames e procedimentos.
 
+## Video Pitch
+
+O video pitch está disponível no YouTube no link abaixo:
+
+https://www.youtube.com/watch?v=rfCeNKvUUSk
+[![Video Pitch](https://img.youtube.com/vi/rfCeNKvUUSk/hqdefault.jpg)](https://www.youtube.com/watch?v=rfCeNKvUUSk)
+
 ## Tecnologias utilizadas
 
 - [Spring 3.20](https://spring.io/)
