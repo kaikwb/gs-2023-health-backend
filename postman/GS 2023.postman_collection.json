@@ -1,0 +1,785 @@
+{
+	"info": {
+		"_postman_id": "4e95d9af-f367-4e19-837b-d4949b58e6dc",
+		"name": "GS 2023",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12305920",
+		"_collection_link": "https://universal-meteor-779234.postman.co/workspace/GS2023-Com~c6934371-2d92-46bd-af63-e17bea538fa3/collection/12305920-4e95d9af-f367-4e19-837b-d4949b58e6dc?action=share&source=collection_link&creator=12305920"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Signup (Patient)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"test\",\r\n    \"email\": \"test@test.com\",\r\n    \"password\": \"12345678\",\r\n    \"name\": \"Patient\",\r\n    \"lastName\": \"Test\",\r\n    \"cpf\": null,\r\n    \"rg\": \"12346789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http_protocol}}://{{base_url}}/api/auth/signup/patient",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signup",
+								"patient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signup (Medic)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"medic\",\r\n    \"email\": \"medic@test.com\",\r\n    \"password\": \"12345678\",\r\n    \"name\": \"Medic\",\r\n    \"lastName\": \"Test\",\r\n    \"cpf\": \"61616161\",\r\n    \"rg\": \"12346789\",\r\n    \"crm\": \"126262318\",\r\n    \"crmUf\": \"SP\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http_protocol}}://{{base_url}}/api/auth/signup/medic",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signup",
+								"medic"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signup (Clinic)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"clinic\",\r\n    \"email\": \"clinic@test.com\",\r\n    \"password\": \"12345678\",\r\n    \"name\": \"Clinic\",\r\n    \"cnpj\": \"161616\",\r\n    \"cnes\": \"32065161\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http_protocol}}://{{base_url}}/api/auth/signup/clinic",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signup",
+								"clinic"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signup (Laboratory)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"laboratory\",\r\n    \"email\": \"laboratory@test.com\",\r\n    \"password\": \"12345678\",\r\n    \"name\": \"Laboratory\",\r\n    \"cnpj\": \"161616200\",\r\n    \"cnes\": \"320651612\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http_protocol}}://{{base_url}}/api/auth/signup/laboratory",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signup",
+								"laboratory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"test\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http_protocol}}://{{base_url}}/api/auth/signin",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{http_protocol}}://{{base_url}}/api/auth/signout",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Patient",
+			"item": [
+				{
+					"name": "Insurance",
+					"item": [
+						{
+							"name": "Get insurance number",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{http_protocol}}://{{base_url}}/api/patients/insurances",
+									"protocol": "{{http_protocol}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"patients",
+										"insurances"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Set Insurance number",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"insurance\": \"Bradesco\",\r\n    \"insuranceNumber\": \"132416161\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{http_protocol}}://{{base_url}}/api/patients/insurances",
+									"protocol": "{{http_protocol}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"patients",
+										"insurances"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Insurance number",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"insurance\": \"Bradesco\",\r\n    \"insuranceNumber\": \"132416161\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{http_protocol}}://{{base_url}}/api/patients/insurances",
+									"protocol": "{{http_protocol}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"patients",
+										"insurances"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Auth",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"patient\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http_protocol}}://{{base_url}}/api/auth/signin",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Patient Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http_protocol}}://{{base_url}}/api/patients",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"patients"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Test",
+			"item": [
+				{
+					"name": "All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http_protocol}}://{{base_url}}/api/test/all",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"test",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mod",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http_protocol}}://{{base_url}}/api/test/mod",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"test",
+								"mod"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http_protocol}}://{{base_url}}/api/test/admin",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"test",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http_protocol}}://{{base_url}}/api/test/user",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"test",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Medic",
+			"item": [
+				{
+					"name": "Speciality",
+					"item": [
+						{
+							"name": "Set Specialities",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"specialities\": [\"Cardiologista\", \"Ortopedista\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{http_protocol}}://{{base_url}}/api/medics/specialities",
+									"protocol": "{{http_protocol}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"medics",
+										"specialities"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Auth",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"medic\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http_protocol}}://{{base_url}}/api/auth/signin",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Medic Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http_protocol}}://{{base_url}}/api/medics",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"medics"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clinic",
+			"item": [
+				{
+					"name": "Medics",
+					"item": [
+						{
+							"name": "Add medic",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{http_protocol}}://{{base_url}}/api/clinics/medics/21",
+									"protocol": "{{http_protocol}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"clinics",
+										"medics",
+										"21"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove medic",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{http_protocol}}://{{base_url}}/api/clinics/medics/21",
+									"protocol": "{{http_protocol}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"clinics",
+										"medics",
+										"21"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Auth",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"clinic\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http_protocol}}://{{base_url}}/api/auth/signin",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Clinic Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http_protocol}}://{{base_url}}/api/clinics",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"clinics"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Appointment",
+			"item": [
+				{
+					"name": "Create appointment",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var dateIso = new Date().toISOString();\r",
+									"\r",
+									"pm.environment.set(\"currentTimeIsoString\", dateIso);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"patient\": 1,\r\n    \"date\": \"{{currentTimeIsoString}}\",\r\n    \"description\": \"aosdnpioasf pomnfop amnfo amsdf masopfmasdo´mf asdmf aopsdmf opadsfm adosmf sadp´mfáso mfoadpsmf padosfm asmf saop\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http_protocol}}://{{base_url}}/api/appointments",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"appointments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update appointment",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var dateIso = new Date().toISOString();\r",
+									"\r",
+									"pm.environment.set(\"currentTimeIsoString\", dateIso);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"patient\": 1,\r\n    \"date\": \"{{currentTimeIsoString}}\",\r\n    \"description\": \"Lorem Ipsum\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http_protocol}}://{{base_url}}/api/appointments/1",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"appointments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get appointments",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http_protocol}}://{{base_url}}/api/appointments",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"appointments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get appointment",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http_protocol}}://{{base_url}}/api/appointments/1",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"appointments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete appointment",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{http_protocol}}://{{base_url}}/api/appointments/2",
+							"protocol": "{{http_protocol}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"appointments",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
